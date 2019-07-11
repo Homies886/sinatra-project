@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if !session[:user_id]
       erb :'users/new'
     else
-      redirect to '/moves'
+      redirect to '/pokemon'
     end
   end
 
