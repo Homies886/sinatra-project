@@ -2,6 +2,6 @@
 
 <form method="post" action="/pokemons/<%=@pokemon.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <input type="text" name="name" value="<%= @pokemon.content %>">
+  <input type="text" name="name" value="<%= @pokemon.name %>">
   <input type="submit" value="submit">
 </form>
