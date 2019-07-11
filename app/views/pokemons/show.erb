@@ -1,0 +1,8 @@
+  <p><%= @pokemon.name %>
+
+  <form method="post" action="/pokemons/<%=@pokemon.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Pokemon">
+  </form>
+
+  <a href="/pokemons/<%=@pokemon.id%>/edit">Edit Pokemon </a>

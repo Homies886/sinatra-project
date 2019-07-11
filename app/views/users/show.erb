@@ -1,6 +1,6 @@
 <p> Here are your caught Pokemon, <%= @user.username %>
 <% @user.pokemon.each do |mon| %>
   <ul>
-    <li><a href="/pokemon/<%=mon.id%>"><%= mon.name %></a></li>
+    <li><a href="/pokemons/<%=mon.id%>"><%= mon.name %></a></li>
   </ul>
 <% end %>

@@ -1,23 +1,15 @@
 class UsersController < ApplicationController
 
   get '/users/:id' do
-    if !logged_in?
-      redirect '/pokemon'
-    end
-
-    @user = User.find(params[:id])
-    if !@user.nil? && @user == current_user
-      erb :'users/show'
-    else
-      redirect '/pokemon'
-    end
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 
   get '/signup' do
-    if !session[:user_id]
-      erb :'users/new'
+    if !logged_in?
+      erb :'users/new', locals: {message: "Please sign up before you sign in"}
     else
-      redirect to '/pokemon'
+      redirect to '/pokemons'
     end
   end
 
@@ -27,16 +19,16 @@ class UsersController < ApplicationController
     else
       @user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
-      redirect '/pokemon'
+      redirect '/pokemons'
     end
   end
 
   get '/login' do
     @error_message = params[:error]
-    if !session[:user_id]
+    if !logged_in?
       erb :'users/login'
     else
-      redirect '/pokemon'
+      redirect '/pokemons'
     end
   end
 
@@ -44,14 +36,14 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/pokemon"
+      redirect "/pokemons"
     else
       redirect to '/signup'
     end
   end
 
   get '/logout' do
-    if session[:user_id] != nil
+    if logged_in?
       session.destroy
       redirect to '/login'
     else
