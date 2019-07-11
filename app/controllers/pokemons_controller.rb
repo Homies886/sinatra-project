@@ -1,7 +1,7 @@
 class PokemonsController < ApplicationController
   get '/pokemons' do
     if logged_in?
-      @pokemons = Pokemon.all
+      @pokemons = current_user.pokemons.all
       erb :'pokemons/index'
     else
       redirect to '/login'
