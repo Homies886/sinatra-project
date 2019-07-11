@@ -25,7 +25,7 @@ class PokemonController < ApplicationController
     unless Pokemon.valid_params?(params)
       redirect "/pokemon/#{@pokemon.id}/edit?error=invalid pokemon"
     end
-    @pokemon.update(params.select{|k|k=="name" || k=="capacity"})
+    @pokemon.update(params.select{|k|k=="name"})
     redirect "/pokemon/#{@pokemon.id}"
   end
 
