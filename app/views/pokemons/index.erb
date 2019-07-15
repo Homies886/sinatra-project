@@ -3,6 +3,9 @@
 <% @pokemons.each do |mon| %>
   <%= mon.name %><br />
   <a href="/pokemons/<%=mon.id%>/edit">Edit</a>
+  <a href="/pokemons/<%=mon.id%>">Delete</a>
   <br />
   <br />
 <% end %>
+
+<a href="/pokemons/new"> Add Pokemon </a>
