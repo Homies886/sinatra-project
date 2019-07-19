@@ -1,4 +1,4 @@
-<h1>Edit <%= @pokemon.name %></h1>
+<h2>Edit <%= @pokemon.name %></h2>
 
 <form method="post" action="/pokemons/<%=@pokemon.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
